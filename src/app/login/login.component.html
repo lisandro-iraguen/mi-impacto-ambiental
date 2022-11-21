@@ -1,0 +1,27 @@
+  <mat-grid-list cols="1" rows="1" rowHeight="2.2:1">
+    <mat-grid-tile>       
+    <mat-card>
+        <mat-card-header>      
+        <div mat-card-avatar class="header-image"></div>
+          <mat-card-title>Login</mat-card-title>
+          <mat-card-subtitle>elija una opción</mat-card-subtitle>
+        </mat-card-header>
+      
+        <mat-card-content>      
+            <mat-form-field>
+                <mat-label>Usuario</mat-label>
+                <input matInput [(ngModel)]="usuarie">
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput [(ngModel)]="password" [type]="'password'">
+              </mat-form-field>      
+        </mat-card-content>
+        <mat-card-actions class="center">
+            <button mat-button (click)="goToSignUp()">sign up</button>
+            <button mat-button (click)="goToLogin()">login</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

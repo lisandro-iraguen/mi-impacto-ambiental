@@ -1,0 +1,10 @@
+<div>
+    <mat-form-field>
+        <mat-label>organizaciones</mat-label>
+        <mat-select  (selectionChange)="selectedValue($event)">
+            <mat-option *ngFor="let organizacion of organizaciones" [value]="organizacion" >
+                {{organizacion.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>

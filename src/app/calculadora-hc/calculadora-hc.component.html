@@ -1,0 +1,31 @@
+<mat-grid-list cols="1" rows="1" rowHeight="2.3:1">
+  <mat-grid-tile>
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>Calculo de HC</mat-card-title>
+      <mat-card-subtitle>calcular</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+
+      <div class="center">
+        <app-organizacion (data)="cargarDatos($event)"></app-organizacion>
+      </div>
+       
+      <mat-form-field class="center">
+        <mat-label>Anual/Mensual</mat-label>
+        <mat-select [(value)]="calculo.periodicidad">
+          <mat-option *ngFor="let periodo of periodos" [value]="periodo.value">
+            {{periodo.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions class="center">
+      <button mat-button (click)="enviarConsulta()">generar</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-grid-tile>
+</mat-grid-list>

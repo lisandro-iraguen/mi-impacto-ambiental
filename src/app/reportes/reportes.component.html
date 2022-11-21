@@ -1,0 +1,50 @@
+ <mat-grid-list  cols="1" rows="1" rowHeight="2.3:1"> 
+  <mat-grid-tile>
+    <mat-card *ngIf="!mostrarReporteEnPantalla">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Reportes</mat-card-title>
+        <mat-card-subtitle>seleccionar reporte</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="center">
+          <app-reporte (data)="cargarDatos($event)"></app-reporte>
+        </div>
+        <div *ngIf="muestraOrganizacion()" class="center">
+          <app-organizacion (data)="cargarDatosOrganizacion($event)"></app-organizacion>
+        </div>
+        <div *ngIf="muestraSectores()" class="center">
+          <app-sector (data)="cargarDatosSector($event)"></app-sector>
+        </div>
+
+
+      </mat-card-content>
+      <mat-card-actions class="center">
+        <button mat-button (click)=enviarPeticion()>imprimir</button>
+      </mat-card-actions>
+    </mat-card>
+
+
+    
+    <mat-card *ngIf="mostrarReporteEnPantalla">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Reporte</mat-card-title>
+        <mat-card-subtitle>resultado del reporte</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <pre>   {{reporte}}   </pre>
+      </mat-card-content>
+      <mat-card-actions class="center">
+        <button mat-button (click)=cerrarReporte()>carrar</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </mat-grid-tile>
+
+  
+  
+ 
+</mat-grid-list>

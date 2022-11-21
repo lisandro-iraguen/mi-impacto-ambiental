@@ -1,0 +1,16 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+.card {
+    max-width: 400px;   
+  }
+
+  .header-image {
+    background-image: url('https://cdn1.iconfinder.com/data/icons/fitness-icon-collection/100/centimeter-512.png');
+    background-size: cover;
+  }
+  .card-position{
+    padding-top:10px;
+  }
+

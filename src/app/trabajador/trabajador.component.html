@@ -1,0 +1,8 @@
+<mat-form-field>
+    <mat-label>trabajadores</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let trabajador of trabajadores" [value]="trabajador.value">
+        {{trabajador.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> 

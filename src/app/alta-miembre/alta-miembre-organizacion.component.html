@@ -1,0 +1,32 @@
+<mat-grid-list cols="1" rows="1" rowHeight="2.3:1">
+  <mat-grid-tile>
+
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Alta Miembre Organizacion</mat-card-title>
+        <mat-card-subtitle>Miembre Organizacion</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-form-field class="center">
+          <mat-label>razon social</mat-label>
+          <input [(ngModel)]="miembre.razonSocial" matInput>
+        </mat-form-field>       
+        <br>
+        <div class="center">
+          <app-organizacion (data)="cargarDatos($event)"></app-organizacion>
+        </div>
+        <br>
+        <mat-form-field class="center">
+          <mat-label>direccion</mat-label>
+          <input [(ngModel)]="miembre.direccion" matInput>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions class="center">
+        <button mat-button (click)="enviarConsulta()" [disabled]="isEnabled()">enviar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

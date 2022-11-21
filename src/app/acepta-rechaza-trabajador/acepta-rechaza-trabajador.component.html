@@ -1,0 +1,60 @@
+<mat-grid-list cols="1" rows="1" rowHeight="2.3:1">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Acepta/Rechaza Trabajador</mat-card-title>
+        <mat-card-subtitle>aceptar o rechazar</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 table-width" >
+
+          <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef><span class="negrita">Nombre </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef> <span class="negrita">Apellido </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+          </ng-container>
+
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="dni">
+            <th mat-header-cell *matHeaderCellDef> <span class="negrita">Dni </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+          </ng-container>
+
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef class="mat-column-radio-buttons"><span class="negrita"> Estado </span></th>
+            <td mat-cell *matCellDef="let element">
+              <mat-radio-group aria-label="Select an option"  (change)="onChange(element.id,$event)">
+                <mat-radio-button color="primary" value="1">Aceptar</mat-radio-button>
+                <mat-radio-button color="primary" value="2" >Rechazar</mat-radio-button>
+              </mat-radio-group>
+            </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+
+      <mat-card-actions class="center">
+        <button mat-button  (click)="limpiar()">limpiar</button>
+        <button mat-button (click)="enviarSolicitud()">enviar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

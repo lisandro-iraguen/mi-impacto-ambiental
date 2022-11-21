@@ -1,0 +1,47 @@
+<mat-grid-list cols="1" rows="1" rowHeight="2.3:1">
+  <mat-grid-tile>
+
+  <mat-card class="card">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>Visualización de Reportes</mat-card-title>
+      <mat-card-subtitle>Visualizar</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="center">
+        <app-organizacion></app-organizacion>
+      </div>
+      <mat-form-field class="center">
+        <mat-label>Anual/Mensual</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option *ngFor="let periodo of periodos" [value]="periodo.value">
+            {{periodo.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="selected=='anual'">
+      <mat-form-field class="center">
+        <mat-label>año</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="year">
+        <mat-hint>YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker  startView="multi-year" (yearSelected)="setYear($event, picker)"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div *ngIf="selected=='mensual'">
+      <mat-form-field class="center">
+        <mat-label>mes</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="month">
+        <mat-hint>MM</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker  startView="year" (monthSelected)="setMonth($event, picker)"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    </mat-card-content>
+    <mat-card-actions class="center">
+      <button mat-button>generar reporte</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,10 @@
+<div>
+    <mat-form-field>
+        <mat-label>Reporte</mat-label>
+        <mat-select (selectionChange)="selectedValue($event)">
+            <mat-option *ngFor="let reporte of reportes" [value]="reporte">
+                {{reporte.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>

@@ -1,0 +1,16 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+.card {
+    max-width: 400px;   
+  }
+
+  .header-image {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/85/85039.png');
+    background-size: cover;
+  }
+  .card-position{
+    padding-top:10px;
+  }
+

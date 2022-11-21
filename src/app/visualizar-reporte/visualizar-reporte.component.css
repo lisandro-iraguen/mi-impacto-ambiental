@@ -1,0 +1,16 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+.card {
+    max-width: 400px;   
+  }
+
+  .header-image {
+    background-image: url('https://pic.onlinewebfonts.com/svg/img_422794.png');
+    background-size: cover;
+  }
+  .card-position{
+    padding-top:10px;
+  }
+

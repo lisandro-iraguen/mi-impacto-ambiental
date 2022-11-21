@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Example icon-button with a menu" (click)="goTO('home')">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span>Mi impacto ambiental </span>
+  <span class="example-spacer"></span>  
+  <a *ngIf="estaLogeado()" href="/settings"> Hola {{ usuarie }}  </a>
+  <a *ngIf="!estaLogeado()" href="/login"> login </a>
+  
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="goTO('vincular-trabajador')">Vincular Trabajador</button>
+  <button *ngIf="esAdmin()" mat-menu-item (click)="goTO('acepta-rechaza-trabajador')">Aceptar/Rechazar
+    Trabajador</button>
+  <button *ngIf="esAdmin()" mat-menu-item (click)="goTO('recomendaciones')">Visualizar Recomendaciones</button>
+  <button mat-menu-item (click)="goTO('tramo')">Carga Trayectos</button>
+  <button *ngIf="esAdmin()" mat-menu-item (click)="goTO('organizacion')">Alta en nueva
+    organizacion/sector</button>
+  <button *ngIf="esAdmin()" mat-menu-item (click)="goTO('visualizar-reporte')">Visualizar Reporte</button>
+  <button mat-menu-item (click)="goTO('reportes')">Reportes</button>
+  <button mat-menu-item (click)="goTO('calculadora-hc')">Calcular HC</button>
+  <button *ngIf="esAdmin()" mat-menu-item (click)="goTO('registrar-mediciones')">Registrar Mediciones</button>
+  <button mat-menu-item (click)="goTO('recomendaciones')">Guia de
+    Recomendaciones</button>
+</mat-menu>

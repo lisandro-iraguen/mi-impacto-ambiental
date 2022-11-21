@@ -1,0 +1,32 @@
+<mat-grid-list cols="1" rows="1" rowHeight="2.2:1">
+  <mat-grid-tile>   
+  <mat-card class="width">
+    <mat-card-title>Opciones</mat-card-title>
+    <section>
+      <mat-list>
+        <mat-list-item><a routerLink="../trabajador">Vincular Trabajador </a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item *ngIf="esAdmin()" ><a routerLink="../trabajadores">Aceptar/Rechazar Trabajador </a></mat-list-item>
+        <mat-divider *ngIf="esAdmin()"></mat-divider>
+        <mat-list-item *ngIf="esAdmin()"><a routerLink="../recomendaciones">Visualizar Recomendaciones</a></mat-list-item>
+        <mat-divider *ngIf="esAdmin()"></mat-divider>
+        <mat-list-item ><a routerLink="../tramo">Carga Trayectos</a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item *ngIf="esAdmin()"><a routerLink="../organizacion">Alta en nueva organizacion/sector</a></mat-list-item>
+        <mat-divider *ngIf="esAdmin()"></mat-divider>
+        <mat-list-item *ngIf="esAdmin()"><a routerLink="../visualizar-reporte">Visualizar Reporte</a></mat-list-item>
+        <mat-divider *ngIf="esAdmin()"></mat-divider>
+        <mat-list-item ><a routerLink="../reportes">Reportes</a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item ><a routerLink="../calculadora-hc">Calcular HC</a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item *ngIf="esAdmin()"><a routerLink="../registrar-mediciones">Registrar Mediciones</a></mat-list-item>
+        <mat-divider *ngIf="esAdmin()"></mat-divider>
+        <mat-list-item ><a routerLink="../recomendacion">Guia de Recomendaciones</a></mat-list-item>
+      </mat-list>
+    </section>
+  </mat-card>
+    
+  
+</mat-grid-tile>
+</mat-grid-list>

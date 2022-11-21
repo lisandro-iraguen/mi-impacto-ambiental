@@ -1,0 +1,13 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+.card {
+    max-width: 400px;   
+  }
+
+  
+  .card-position{
+    padding-top:10px;
+  }
+

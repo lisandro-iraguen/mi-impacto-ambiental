@@ -1,0 +1,9 @@
+
+
+  .footer-container {
+    flex: auto;
+  }
+  .footer-content {
+    margin: 0 auto;
+    text-align: center;
+  }

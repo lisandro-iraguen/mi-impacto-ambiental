@@ -1,0 +1,148 @@
+<mat-grid-list cols="3" rows="1" rowHeight="1:1">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Carga de trayectos </mat-card-title>
+        <mat-card-subtitle>alta de trayectos</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="center">
+          <app-organizacion  (data)="cargarDatosOrganizacion($event)"></app-organizacion>
+        </div>
+
+        <div class="center">
+          <mat-form-field appearance="outline" class="max-width-from-field">
+            <mat-label>pos-X</mat-label>
+            <input matInput type="number" [(ngModel)]="x_tramo_pos">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="max-width-from-field">
+            <mat-label>pos-Y</mat-label>
+            <input matInput type="number" [(ngModel)]="y_tramo_pos">
+          </mat-form-field>
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions class="center">
+        <button mat-button (click)="puedeMostratTramos()">ingresar tramo</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card *ngIf="muestraTramos">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Carga de tremos</mat-card-title>
+        <mat-card-subtitle>alta tramo</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="center">
+          <mat-form-field appearance="outline" class="max-width-from-field">
+            <mat-label>pos-X</mat-label>
+            <input matInput type="number" [(ngModel)]="x_pos">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="max-width-from-field">
+            <mat-label>pos-Y</mat-label>
+            <input matInput type="number" [(ngModel)]="y_pos">
+          </mat-form-field>
+        </div>
+        <mat-form-field class="center">
+          <mat-label>fecha y hora inicio del viaje</mat-label>
+          <input matInput type="datetime-local" [(ngModel)]="horario">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="center">
+          <mat-label>Medio De Transporte</mat-label>
+          <mat-select (selectionChange)="selectedValue($event)">
+            <mat-option *ngFor="let medioDeTransporte of mediosDeTransporte" [value]="medioDeTransporte">
+              {{medioDeTransporte.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="center" *ngIf="esTransportePublico()">
+          <mat-label>Transporte Publico</mat-label>
+          <mat-select (selectionChange)="transportePublicoSeleccionado($event)">
+            <mat-option *ngFor="let a of transportePublico" [value]="a">
+              {{a.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="center" *ngIf="esServicioContratado()">
+          <mat-label>vehiculos</mat-label>
+          <mat-select (selectionChange)="servicioContratadoSeleccionado($event)">
+            <mat-option *ngFor="let b of vehiculos" [value]="b">
+              {{b.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+
+
+      <mat-card-actions class="center">
+        <button mat-button (click)="ingresar_nuevo_tramo()">ingresar nuevo tramo</button>
+        <button mat-button (click)="finalizar()">finalizar</button>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card *ngIf="muestraTramos">
+      <mat-card-content>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 demo-table">
+
+          <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="x">
+            <th mat-header-cell *matHeaderCellDef><span class="negrita">x </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.x}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="y">
+            <th mat-header-cell *matHeaderCellDef> <span class="negrita">y </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.y}} </td>
+          </ng-container>
+
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="horario">
+            <th mat-header-cell *matHeaderCellDef> <span class="negrita">horario </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.horario}} </td>
+
+          </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="transporte">
+            <th mat-header-cell *matHeaderCellDef> <span class="negrita">Transporte </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.medio}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="publico">
+            <th mat-header-cell *matHeaderCellDef> <span class="negrita">Publico </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.trasnportePublico}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="servicio">
+            <th mat-header-cell *matHeaderCellDef> <span class="negrita">Servicio </span></th>
+            <td mat-cell *matCellDef="let element"> {{element.servicioTransporte}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

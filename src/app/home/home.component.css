@@ -1,0 +1,29 @@
+.center{
+  display: flex;
+  justify-content: center;
+}
+.card {
+  max-width:1100px;   
+}
+
+.width{
+  width: 500px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 1000px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.header-image {
+  background-image: url('https://pic.onlinewebfonts.com/svg/img_569204.png');
+  background-size: cover;
+}
+.card-position{
+  padding-top:10px;
+}
+
