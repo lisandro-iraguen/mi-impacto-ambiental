@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   public goToLogin(){
     localStorage.clear;
     
-          this.http.get('http://localhost:8080/usuarie/'+this.usuarie+'/'+this.password)
+          this.http.get('http://52.142.62.129:8080/usuarie/'+this.usuarie+'/'+this.password)
            .pipe(map((res: any) => {
             localStorage.setItem('usuarie',res.nombre)    
             localStorage.setItem('usuarie-id',res.id)    
