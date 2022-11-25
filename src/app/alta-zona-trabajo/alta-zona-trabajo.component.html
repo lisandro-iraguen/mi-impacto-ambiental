@@ -9,15 +9,11 @@
 
     <mat-card-content>
       <div class="center">
-        <app-organizacion></app-organizacion>
+        <app-organizacion (data)="cargarDatosOrganizacion($event)"></app-organizacion>
       </div>
       <div class="center">
-        <app-sector></app-sector>
-      </div>
-      <mat-form-field class="center">
-        <mat-label>email</mat-label>
-        <input matInput>
-      </mat-form-field>
+        <app-sector (data)="cargarDatosSector($event)"></app-sector>
+      </div>      
     </mat-card-content>
 
     <mat-card-actions class="center">

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit,OnInit, ViewChild } from '@angular/core';
+import { MatSort,Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
@@ -20,9 +21,10 @@ export class AceptaRechazaTrabajadorComponent implements OnInit {
   public trabajadoresAceptados:string[]=[];
   public trabajadoresRechazados:string[]=[];
   
-  public displayedColumns: string[] = ['nombre', 'apellido', 'dni','estado'];
-  constructor(private http: HttpClient,private router: Router) { }
+  public displayedColumns: string[] = ['nombre', 'apellido', 'dni','estado','baja'];
+  @ViewChild(MatSort) sort: MatSort =new MatSort();;
   @ViewChild(MatTable) table!: MatTable<any>;
+  constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit(): void {
     this.http.get('http://localhost:8080/miembros')
@@ -30,10 +32,14 @@ export class AceptaRechazaTrabajadorComponent implements OnInit {
         res.forEach((item: any)=>{
           console.log(this.table.dataSource)
           this.dataSource.data.push({ id: item.id, nombre:item.nombre , apellido:item.apellido, dni:item.dni})          
-          this.table.renderRows();
+          this.dataSource.sort = this.sort;
         })        
       }))
       .subscribe(); 
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
  public onChange(id:string, item:any){
@@ -49,6 +55,11 @@ export class AceptaRechazaTrabajadorComponent implements OnInit {
   }
  
  
+ }
+
+ public deleteTicket(i:number){  
+  this.dataSource.data.splice(i, 1);
+  this.dataSource._updateChangeSubscription(); // <-- Refresh the datasource
  }
  private aceptado(value:number){ return value==1 }
  private rechazado(value:number){ return value==2 }
@@ -80,7 +91,13 @@ export class AceptaRechazaTrabajadorComponent implements OnInit {
     } 
 
     public limpiar(){
-      window.location.reload()
+      window.location.reload()  
+    }
+
+    public borrarTrabajador(){ return}
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
     }
     
 }

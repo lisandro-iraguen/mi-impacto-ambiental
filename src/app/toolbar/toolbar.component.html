@@ -15,7 +15,6 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="goTO('vincular-trabajador')">Vincular Trabajador</button>
   <button *ngIf="esAdmin()" mat-menu-item (click)="goTO('acepta-rechaza-trabajador')">Aceptar/Rechazar
     Trabajador</button>
   <button *ngIf="esAdmin()" mat-menu-item (click)="goTO('recomendaciones')">Visualizar Recomendaciones</button>

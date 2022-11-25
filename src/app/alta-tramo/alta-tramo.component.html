@@ -9,7 +9,7 @@
 
       <mat-card-content>
         <div class="center">
-          <app-organizacion  (data)="cargarDatosOrganizacion($event)"></app-organizacion>
+          <app-organizacion (data)="cargarDatosOrganizacion($event)"></app-organizacion>
         </div>
 
         <div class="center">
@@ -87,6 +87,8 @@
 
       <mat-card-actions class="center">
         <button mat-button (click)="ingresar_nuevo_tramo()">ingresar nuevo tramo</button>
+      </mat-card-actions>
+      <mat-card-actions class="center">
         <button mat-button (click)="finalizar()">finalizar</button>
       </mat-card-actions>
     </mat-card>
@@ -96,52 +98,60 @@
   <mat-grid-tile>
     <mat-card *ngIf="muestraTramos">
       <mat-card-content>
+        <mat-form-field>
+          <mat-label>filtro</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="filtro" #input>
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1 demo-table"> -->
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 demo-table">
-
-          <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-          <!-- Position Column -->
           <ng-container matColumnDef="x">
-            <th mat-header-cell *matHeaderCellDef><span class="negrita">x </span></th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="negrita">x </span></th>
             <td mat-cell *matCellDef="let element"> {{element.x}} </td>
           </ng-container>
 
-          <!-- Name Column -->
           <ng-container matColumnDef="y">
-            <th mat-header-cell *matHeaderCellDef> <span class="negrita">y </span></th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="negrita">y </span></th>
             <td mat-cell *matCellDef="let element"> {{element.y}} </td>
           </ng-container>
 
 
-          <!-- Symbol Column -->
           <ng-container matColumnDef="horario">
-            <th mat-header-cell *matHeaderCellDef> <span class="negrita">horario </span></th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="negrita">horario </span></th>
             <td mat-cell *matCellDef="let element"> {{element.horario}} </td>
 
           </ng-container>
-          <!-- Symbol Column -->
           <ng-container matColumnDef="transporte">
-            <th mat-header-cell *matHeaderCellDef> <span class="negrita">Transporte </span></th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="negrita">Transporte </span></th>
             <td mat-cell *matCellDef="let element"> {{element.medio}} </td>
           </ng-container>
-
-          <!-- Symbol Column -->
           <ng-container matColumnDef="publico">
-            <th mat-header-cell *matHeaderCellDef> <span class="negrita">Publico </span></th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="negrita">Publico </span></th>
             <td mat-cell *matCellDef="let element"> {{element.trasnportePublico}} </td>
           </ng-container>
 
-          <!-- Symbol Column -->
+
           <ng-container matColumnDef="servicio">
-            <th mat-header-cell *matHeaderCellDef> <span class="negrita">Servicio </span></th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="negrita">Servicio </span></th>
             <td mat-cell *matCellDef="let element"> {{element.servicioTransporte}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="baja">
+            <th mat-header-cell *matHeaderCellDef class="mat-column-radio-buttons"><span class="negrita center"> baja
+              </span></th>
+            <td mat-cell *matCellDef="let element; let j = index;">
+              <div class="center">
+                <button mat-icon-button color="primary" (click)="deleteTicket(j)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <br>
+        <button mat-button (click)="limpiar()">limpiar</button>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>

@@ -4,15 +4,15 @@
     <mat-card-title>Opciones</mat-card-title>
     <section>
       <mat-list>
-        <mat-list-item><a routerLink="../trabajador">Vincular Trabajador </a></mat-list-item>
-        <mat-divider></mat-divider>
+        
         <mat-list-item *ngIf="esAdmin()" ><a routerLink="../trabajadores">Aceptar/Rechazar Trabajador </a></mat-list-item>
         <mat-divider *ngIf="esAdmin()"></mat-divider>
         <mat-list-item *ngIf="esAdmin()"><a routerLink="../recomendaciones">Visualizar Recomendaciones</a></mat-list-item>
         <mat-divider *ngIf="esAdmin()"></mat-divider>
         <mat-list-item ><a routerLink="../tramo">Carga Trayectos</a></mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item *ngIf="esAdmin()"><a routerLink="../organizacion">Alta en nueva organizacion/sector</a></mat-list-item>
+        <mat-list-item *ngIf="esAdmin()"><a routerLink="../organizacion">Alta de organizacion/sector</a></mat-list-item>
+        <mat-list-item><a routerLink="../zona-trabajo">Darme de Alta en Organizacion</a></mat-list-item>
         <mat-divider *ngIf="esAdmin()"></mat-divider>
         <mat-list-item *ngIf="esAdmin()"><a routerLink="../visualizar-reporte">Visualizar Reporte</a></mat-list-item>
         <mat-divider *ngIf="esAdmin()"></mat-divider>

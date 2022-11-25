@@ -19,130 +19,139 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { VisualizarReporteComponent } from './visualizar-reporte/visualizar-reporte.component';
 
 
-import { 
-  AuthGuardService as AuthGuard 
+import {
+  AuthGuardService as AuthGuard
 } from './auth/auth-guard.service';
-import { 
-  RoleGuardService as RoleGuard 
+import {
+  RoleGuardService as RoleGuard
 } from './auth/role-guard.service';
 import { SettingsComponent } from './settings/settings.component';
+import { AltaSectorComponent } from './alta-sector/alta-sector.component';
 const routes: Routes = [
-{
-  path: '',
-  component: LoginComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'sign-up',
-  component: SignUpComponent
-},
-{
-  path: 'login',
-  component: LoginComponent
-},
-{
-  path: 'usuarie',
-  component: AltaUsuarieComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'settings',
-  component: SettingsComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'admin',
-  component: AltaMiembreOrganizacionComponent,
-  canActivate: [AuthGuard]
-},
-{
-  path: 'zona-trabajo',
-  component: AltaZonaTrabajoComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'visualizar-reporte',
-  component: VisualizarReporteComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'reportes',
-  component: ReportesComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'trabajadores',
-  component: AceptaRechazaTrabajadorComponent,
-  canActivate: [AuthGuard],
-  data: { 
-     expectedRole: 'ADMIN'
-  } 
-},
-{
-  path: 'settings',
-  component: SettingsComponent,
-  canActivate: [AuthGuard],
-  data: { 
-     expectedRole: 'ADMIN'
-   } 
-},
-{
-  path: 'recomendaciones-vinculacion',
-  component: RecomendacionesVinculacionComponent,
-  canActivate: [RoleGuard], 
-   data: { 
-     expectedRole: 'ADMIN'
-   } 
-},
-{
-  path: 'recomendaciones',
-  component: RecomendacionesComponent,
-  canActivate: [RoleGuard], 
-  data: { 
-    expectedRole: 'ADMIN'
-  } 
-},
-{
-  path: 'tramo',
-  component: AltaTramoComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'organizacion',
-  component: AltaOrganizacionComponent,
-  canActivate: [RoleGuard], 
-  data: { 
-    expectedRole: 'ADMIN'
-  } 
-},
-{
-  path: 'aprobacion',
-  component: EsperandoAprobacionComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'home',
-  component: HomeComponent,
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'registrar-mediciones',
-  component: RegistrarMedicionesComponent,
-  canActivate: [RoleGuard], 
-  data: { 
-    expectedRole: 'ADMIN'
-  } 
-},
-{
-  path: 'calculadora-hc',
-  component: CalculadoraHCComponent,  
-  canActivate: [AuthGuard] 
-},
-{
-  path: 'recomendacion',
-  component: GuiaDeRecomendacionComponent,
-  canActivate: [AuthGuard] 
-}
+  {
+    path: '',
+    component: LoginComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sign-up',
+    component: SignUpComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'usuarie',
+    component: AltaUsuarieComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    component: AltaMiembreOrganizacionComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'zona-trabajo',
+    component: AltaZonaTrabajoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'visualizar-reporte',
+    component: VisualizarReporteComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reportes',
+    component: ReportesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'trabajadores',
+    component: AceptaRechazaTrabajadorComponent,
+    // canActivate: [RoleGuard],
+    // data: { 
+    //    expectedRole: 'ADMIN'
+    // } 
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    // canActivate: [RoleGuard],
+    // data: { 
+    //    expectedRole: 'ADMIN'
+    //  } 
+  },
+  {
+    path: 'recomendaciones-vinculacion',
+    component: RecomendacionesVinculacionComponent,
+    // canActivate: [RoleGuard], 
+    //  data: { 
+    //    expectedRole: 'ADMIN'
+    //  } 
+  },
+  {
+    path: 'recomendaciones',
+    component: RecomendacionesComponent,
+    // canActivate: [RoleGuard], 
+    // data: { 
+    //   expectedRole: 'ADMIN'
+    // } 
+  },
+  {
+    path: 'tramo',
+    component: AltaTramoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'organizacion',
+    component: AltaOrganizacionComponent,
+    // canActivate: [RoleGuard], 
+    // data: { 
+    //   expectedRole: 'ADMIN'
+    // } 
+  },
+  {
+    path: 'sector',
+    component: AltaSectorComponent,
+    // canActivate: [RoleGuard], 
+    // data: { 
+    //   expectedRole: 'ADMIN'
+    // } 
+  },
+  {
+    path: 'aprobacion',
+    component: EsperandoAprobacionComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'registrar-mediciones',
+    component: RegistrarMedicionesComponent,
+    // canActivate: [RoleGuard], 
+    // data: { 
+    //   expectedRole: 'ADMIN'
+    // } 
+  },
+  {
+    path: 'calculadora-hc',
+    component: CalculadoraHCComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'recomendacion',
+    component: GuiaDeRecomendacionComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 

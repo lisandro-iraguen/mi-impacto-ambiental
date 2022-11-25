@@ -50,6 +50,9 @@ import { MatTableModule } from '@angular/material/table'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import { SettingsComponent } from './settings/settings.component';
+import { MatSortModule } from '@angular/material/sort';
+import { AltaSectorComponent } from './alta-sector/alta-sector.component';
+
 
 
 @NgModule({
@@ -78,7 +81,8 @@ import { SettingsComponent } from './settings/settings.component';
     GuiaDeRecomendacionComponent,
     TipoComponent,
     ReporteComponent,
-    SettingsComponent
+    SettingsComponent,
+    AltaSectorComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +107,8 @@ import { SettingsComponent } from './settings/settings.component';
     MatListModule,
     MatTableModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSortModule
   ],
   providers: [RouteGaurd,AuthGuardService,AuthService],
   bootstrap: [AppComponent]

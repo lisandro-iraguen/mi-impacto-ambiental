@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
@@ -27,11 +28,14 @@ export class AltaTramoComponent implements OnInit {
   vehiculos: Tipo[] = [];
   filas: Fila[] = [];
   public muestraTramos: boolean = false;
+  location: GeolocationCoordinates | undefined;
   constructor(private router: Router, private http: HttpClient) { }
 
-  public displayedColumns: string[] = ['x', 'y', 'horario', 'transporte', 'publico', 'servicio'];
+  public displayedColumns: string[] = ['x', 'y', 'horario', 'transporte', 'publico', 'servicio', 'baja'];
   dataSource = new MatTableDataSource<Fila>(this.filas);
   @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatSort) sort: MatSort = new MatSort();;
+
 
   public mediosDeTransporte: MedioDeTransporte[] = [];
   ngOnInit(): void {
@@ -53,7 +57,9 @@ export class AltaTramoComponent implements OnInit {
       }))
       .subscribe();
   }
-
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
   public finalizar() {
     let httpHeaders = new HttpHeaders({});
     const headers = { 'content-type': 'application/json' }
@@ -78,10 +84,15 @@ export class AltaTramoComponent implements OnInit {
   }
 
   public ingresar_nuevo_tramo() {
-    if (this.y_pos != undefined && this.y_pos != undefined) {
-      this.dataSource.data.push({ x: this.x_pos?.toString(), y: this.y_pos?.toString(), horario: this.horario, medio: this.medioDeTrasnporteId, trasnportePublico: this.trasnportePublicoId, servicioTransporte: this.servicioTransporteId })
-      this.table.renderRows();
+    if (this.y_pos != undefined && this.x_pos != undefined) {
+      let fila: Fila = new Fila()
+      fila = { id_usuario:   localStorage.getItem('usuarie-id')?.toString(), x: this.x_pos?.toString(), y: this.y_pos?.toString(), horario: this.horario, medio: this.medioDeTrasnporteId, trasnportePublico: this.trasnportePublicoId, servicioTransporte: this.servicioTransporteId }
+      if (!this.dataSource.data.some(item => item.x == fila.x && item.y==fila.y&&item.medio==fila.medio)) {
+        this.dataSource.data.push(fila)
+      }
+      this.dataSource.sort = this.sort;
     }
+
   }
   public selectedValue(data: any) {
     this.trasnportePublicoId = ''
@@ -127,6 +138,9 @@ export class AltaTramoComponent implements OnInit {
     return (this.medioDeTrasnporteId == 'Servicio Contratado')
   }
 
+  public limpiar() {
+    window.location.reload()
+  }
 
   public transportePublicoSeleccionado(data: any) {
     this.trasnportePublicoId = data.value.viewValue
@@ -137,14 +151,22 @@ export class AltaTramoComponent implements OnInit {
   }
 
   public puedeMostratTramos() {
-    if (this.x_tramo_pos != undefined && this.y_tramo_pos != undefined&&this.organizacionId!=undefined) {
+    if (this.organizacionId != undefined) {
       this.muestraTramos = true;
     }
   }
 
-
-  public cargarDatosOrganizacion(e: any) {    
+  public deleteTicket(i: number) {
+    this.dataSource.data.splice(i, 1);
+    this.dataSource._updateChangeSubscription(); // <-- Refresh the datasource
+  }
+  public cargarDatosOrganizacion(e: any) {
     this.organizacionId = e.id
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

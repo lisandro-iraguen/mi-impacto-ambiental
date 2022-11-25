@@ -13,4 +13,10 @@
   .card-position{
     padding-top:10px;
   }
+  .max-width-from-field {
+    width: 100px;
+  }
 
+  .demo-table {
+    width: 500px;
+  }

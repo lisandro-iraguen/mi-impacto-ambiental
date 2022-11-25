@@ -1,33 +1,48 @@
 <mat-grid-list cols="1" rows="1" rowHeight="2.3:1">
   <mat-grid-tile>
-  <mat-card>
-    <mat-card-header>
-      <div mat-card-avatar class="header-image"></div>
-      <mat-card-title>Registrar Mediciones</mat-card-title>
-      <mat-card-subtitle>alta mediciones</mat-card-subtitle>
-    </mat-card-header>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Registrar Mediciones</mat-card-title>
+        <mat-card-subtitle>alta mediciones</mat-card-subtitle>
+      </mat-card-header>
 
-    <mat-card-content>
-      <div class="center">
-        <app-organizacion></app-organizacion>
-      </div>
-      <mat-tab-group>
-        <mat-tab label="Manual"> 
-          <br>
-          <div class="center">
-            
-            <app-tipo></app-tipo>
-          </div>
+      <mat-card-content>
+        <div class="center">
+          <app-organizacion  (data)="cargarDatosOrganizacion($event)"></app-organizacion>
+        </div>
+        <mat-tab-group>
+          <mat-tab label="Manual">
+            <br>
+            <div>
+              <div class="center">         
+              <mat-form-field class="example-full-width">
+                <mat-label>ingresar la medicio</mat-label>
+                <input matInput [(ngModel)]="lineaTexto">
+              </mat-form-field>
+              </div>
+              <br>
+              <div class="center">         
+                <button mat-button (click)="enviarMedicionLinea()" [disabled]="!id_organizacion">enviar linea</button>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="CSV">
+            <br>
+            <br>
+            <div class="center">             
+              <input id="input-file-id" type="file" accept=".csv"  (change)="csvInputChange($event)" />
+            </div>
+            <br>
+            <div class="center">
+              <button mat-button (click)="enviarMedicionArchivo()" [disabled]="!id_organizacion">enviar archivo</button>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+      <mat-card-actions class="center">
 
-        </mat-tab>
-        <mat-tab label="CSV">            
-            <input class="ng-hide" id="input-file-id" type="file" accept=".csv"/>          
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card-content>
-    <mat-card-actions class="center">
-      <button mat-button>cargar</button>
-    </mat-card-actions>
-  </mat-card>
-</mat-grid-tile>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
 </mat-grid-list>

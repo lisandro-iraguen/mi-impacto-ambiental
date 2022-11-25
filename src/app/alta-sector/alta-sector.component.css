@@ -1,0 +1,11 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+.card {
+    max-width: 400px;   
+  }
+  .header-image {
+    background-image: url('https://imgs.search.brave.com/z3R9OuGoKNt5vKtSgyAhvl4NMSh0fMta4I64XwanH4M/rs:fit:512:512:1/g:ce/aHR0cHM6Ly93d3cu/dHJhY2tzNjAwMC5j/b20vdXBsb2Fkcy8y/LzYvOC8wLzI2ODA4/MzY5L2Rpc3RhbmNl/XzIucG5n');
+    background-size: cover;
+  }

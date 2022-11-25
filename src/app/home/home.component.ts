@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
   }
 
   public esAdmin(){
-    return this.role=="ADMIN";    
+    // return this.role=="ADMIN";    
+    return true;
   }
 
   public goTO(route:string){

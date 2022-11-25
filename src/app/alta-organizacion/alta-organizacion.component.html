@@ -1,26 +1,108 @@
-<mat-grid-list cols="1" rows="1" rowHeight="2.3:1">
+<mat-grid-list cols="2" rows="1" rowHeight="1.1:1">
   <mat-grid-tile>
 
-  <mat-card>
-    <mat-card-header>
-      <div mat-card-avatar class="header-image"></div>
-      <mat-card-title>Alta Organizacion</mat-card-title>
-      <mat-card-subtitle>alta organizacion</mat-card-subtitle>
-    </mat-card-header>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Alta Organizacion</mat-card-title>
+        <mat-card-subtitle>alta organizacion</mat-card-subtitle>
+      </mat-card-header>
 
-    <mat-card-content>
-      <div class="center">
-        <app-organizacion></app-organizacion>
-      </div>
+      <mat-card-content>
+        <div class="center">
+          <mat-form-field>
+            <mat-label>Razon Social</mat-label>
+            <input matInput [(ngModel)]="razon_social">
+          </mat-form-field>
+        </div>
 
-      <div class="center">
-        <app-sector></app-sector>
-      </div>
+        <div class="center">
+          <mat-form-field>
+            <mat-label>Tipo Organizacion</mat-label>
+            <mat-select (selectionChange)="selectedTipoValue($event)">
+              <mat-option *ngFor="let tipoOrganizacion of tiposOrganizacion" [value]="tipoOrganizacion">
+                {{tipoOrganizacion.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="center">
+          <mat-form-field>
+            <mat-label>Clasificacion de una Organizacion</mat-label>
+            <mat-select (selectionChange)="selectedClasificacionValue($event)">
+              <mat-option *ngFor="let clasificacionOrganizacion of clasificacionesOrganizacion"
+                [value]="clasificacionOrganizacion">
+                {{clasificacionOrganizacion.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="center">
+          <mat-form-field appearance="outline" class="max-width-from-field">
+            <mat-label>pos-X</mat-label>
+            <input matInput type="number" [(ngModel)]="x_pos">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="max-width-from-field">
+            <mat-label>pos-Y</mat-label>
+            <input matInput type="number" [(ngModel)]="y_pos">
+          </mat-form-field>
+        </div>
 
-    </mat-card-content>
-    <mat-card-actions class="center">
-      <button mat-button>enviar solicitud</button>
-    </mat-card-actions>
-  </mat-card>
-</mat-grid-tile>
+        <div class="center">
+          <app-sector (data)="cargarDatos($event)"></app-sector>
+        </div>
+        <div class="center">          
+          <button mat-button (click)="cargarSector()" [disabled]="!razon_social">cargar sector a la organizacion</button>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="center">
+        <button mat-button (click)="irASector()">alta sector</button>
+        <button mat-button (click)="guardarOrganizacion()">enviar solicitud</button>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </mat-grid-tile>
+
+
+<mat-grid-tile>  
+
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>filtro</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="filtro" #input>
+          </mat-form-field>
+           <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1 demo-table"> -->
+  
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="negrita">Id </span></th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="negrita">Nombre </span></th>
+              <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="baja">
+              <th mat-header-cell *matHeaderCellDef class="mat-column-radio-buttons" ><span class="negrita center"> baja </span></th>
+              <td mat-cell *matCellDef="let element; let j = index;">
+                <div class="center">
+                <button mat-icon-button color="primary" (click)="deleteTicket(j)"> <mat-icon>delete</mat-icon></button>
+              </div>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+           </table> 
+           <br>
+           <button mat-button  (click)="limpiar()">limpiar</button>
+        </mat-card-content>
+      </mat-card>
+    
+    </mat-grid-tile>
+
 </mat-grid-list>

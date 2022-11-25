@@ -1,5 +1,6 @@
 export class Fila {
-    x: string | undefined;
+    id_usuario:string | undefined;    
+    x: string | undefined;    
     y: string | undefined;
     horario: string | undefined;
     medio: string | undefined;

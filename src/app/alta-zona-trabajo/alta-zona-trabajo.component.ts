@@ -1,4 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Zona } from './Zona';
 
 interface Organizacion {
   value: string;
@@ -15,34 +20,44 @@ interface Sector{
   styleUrls: ['./alta-zona-trabajo.component.css']
 })
 export class AltaZonaTrabajoComponent implements OnInit {
-
-  constructor() { }
+  zonaDeTrabajo:Zona=new Zona();
+  constructor(private router: Router,private http: HttpClient) { }
 
   ngOnInit(): void {
   }
-  public email=""
-  public enviarSolicitud(){
-      //post enviar los datos;
-      // this.http.post('/alta-organizaciones',
-      // JSON.stringify({
-      //   username: username,
-      //   password: password,
-      // })).subscribe(
-      // data => {
-      //   alert('ok');
-      // },
-      // error => {
-      //   console.log(JSON.stringify(error.json()));
-      // }
-      // )
 
+  public enviarSolicitud(){
+  
+    let httpHeaders = new HttpHeaders({   
+    });             
+    const headers = { 'content-type': 'application/json'}
+    
+    const body=JSON.stringify(this.zonaDeTrabajo);
+    console.log(body)
+
+    this.http.post("http://localhost:8080/zona-trabajo", body, { headers: httpHeaders }).pipe(
+      map(this.extractData),
+      tap((apiResult) => {          
+          this.router.navigate(["/home"]);
+      }),
+      catchError(this.handleErrorObservable)
+    ).subscribe();
+  }
+  
+  private extractData(res: any) {
+    let body = res;
+    return body;
+  }
+  private handleErrorObservable(error: any) {
+    console.error(error.message || error);
+    return throwError(error);
+  } 
+  public cargarDatosOrganizacion(e:any) {
+    this.zonaDeTrabajo.id_organizacion=e.id.toString();
+  }
+  public cargarDatosSector(e:any) {
+    this.zonaDeTrabajo.id_sector=e.id.toString();
   }
  
 
-  //traer del backend 
-  sectores: Sector[] = [
-    {value: 'sector-1', viewValue: 'sector 1'},
-    {value: 'sector-2', viewValue: 'sector 2'},
-    {value: 'sector-3', viewValue: 'sector 3'},
-  ];
 }
