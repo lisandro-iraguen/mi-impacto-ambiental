@@ -37,7 +37,7 @@ public enviarConsulta(){
   const body=JSON.stringify(this.calculo);
   console.log(body)
 
-  this.http.post("http://localhost:8080/calculadora-hc", body, { headers: httpHeaders }).pipe(
+  this.http.post("http://52.142.62.129:8080/calculadora-hc", body, { headers: httpHeaders }).pipe(
     map(this.extractData),
     tap((apiResult) => {          
     

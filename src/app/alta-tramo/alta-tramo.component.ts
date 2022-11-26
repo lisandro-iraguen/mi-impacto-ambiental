@@ -39,7 +39,7 @@ export class AltaTramoComponent implements OnInit {
 
   public mediosDeTransporte: MedioDeTransporte[] = [];
   ngOnInit(): void {
-    this.http.get('http://localhost:8080/medios-de-transporte')
+    this.http.get('http://52.142.62.129:8080/medios-de-transporte')
       .pipe(map((res: any) => {
         res.forEach((item: any) => {
           if (item.TransporteAPie != null)
@@ -64,7 +64,7 @@ export class AltaTramoComponent implements OnInit {
     let httpHeaders = new HttpHeaders({});
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(this.filas);
-    this.http.post("http://localhost:8080/tramo", body, { headers: httpHeaders }).pipe(
+    this.http.post("http://52.142.62.129:8080/tramo", body, { headers: httpHeaders }).pipe(
       map(this.extractData),
       tap((apiResult) => {
         this.extractData(apiResult)
@@ -113,7 +113,7 @@ export class AltaTramoComponent implements OnInit {
   }
 
   public cargarTransportePublicoEnum() {
-    this.http.get('http://localhost:8080/transporte-publico-enum')
+    this.http.get('http://52.142.62.129:8080/transporte-publico-enum')
       .pipe(map((res: any) => {
         res.forEach((item: any) => {
           this.transportePublico.push({ value: item, viewValue: item });
@@ -122,7 +122,7 @@ export class AltaTramoComponent implements OnInit {
       .subscribe();
   }
   public cargarVehiculosEnum() {
-    this.http.get('http://localhost:8080/vehiculos-enum')
+    this.http.get('http://52.142.62.129:8080/vehiculos-enum')
       .pipe(map((res: any) => {
         res.forEach((item: any) => {
           this.vehiculos.push({ value: item, viewValue: item });

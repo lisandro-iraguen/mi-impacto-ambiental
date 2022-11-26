@@ -14,7 +14,7 @@ export class TrabajadorComponent implements OnInit {
   trabajadores: Trabajador[] = [ ];
   ngOnInit(): void {
     
-    this.http.get('http://localhost:8080/trabajadores')
+    this.http.get('http://52.142.62.129:8080/trabajadores')
       .pipe(map((res: any) => {
         res.forEach((item: any)=>{
           this.trabajadores.push({ value: item.id, viewValue: item.nombre +" " +item.apellido  })

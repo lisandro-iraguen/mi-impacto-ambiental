@@ -26,7 +26,7 @@ export class RegistrarMedicionesComponent implements OnInit {
     const body=JSON.stringify(this.lineaTexto);
     console.log(body)
   
-    this.http.post("http://localhost:8080/medicion/"+this.id_organizacion, body, { headers: httpHeaders }).pipe(
+    this.http.post("http://52.142.62.129:8080/medicion/"+this.id_organizacion, body, { headers: httpHeaders }).pipe(
       map(this.extractData),
       tap((apiResult) => {          
       this.lineaTexto="";
@@ -41,7 +41,7 @@ export class RegistrarMedicionesComponent implements OnInit {
     const body=this.fileToUpload;
     console.log(body)
   
-    this.http.post("http://localhost:8080/medicion/"+this.id_organizacion, body, { headers: httpHeaders }).pipe(
+    this.http.post("http://52.142.62.129:8080/medicion/"+this.id_organizacion, body, { headers: httpHeaders }).pipe(
       map(this.extractData),
       tap((apiResult) => {          
       this.lineaTexto="";

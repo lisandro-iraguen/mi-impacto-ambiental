@@ -32,7 +32,7 @@ export class AltaMiembreOrganizacionComponent implements OnInit {
     const body=JSON.stringify(this.miembre);
     console.log(body)
 
-    this.http.post("http://localhost:8080/administrador", body, { headers: httpHeaders }).pipe(
+    this.http.post("http://52.142.62.129:8080/administrador", body, { headers: httpHeaders }).pipe(
       map(this.extractData),
       tap((apiResult) => {          
         this.router.navigate(["/home"]);

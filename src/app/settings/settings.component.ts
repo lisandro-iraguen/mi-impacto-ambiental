@@ -13,7 +13,7 @@ public telefono:string | undefined;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8080/settings/8'+  localStorage.getItem('usuarie-id') )
+    this.http.get('http://52.142.62.129:8080/settings/8'+  localStorage.getItem('usuarie-id') )
     .pipe(map((res: any) => {
         this.email= res.email;
         this.telefono= res.telefono;

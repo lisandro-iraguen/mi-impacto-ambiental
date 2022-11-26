@@ -52,7 +52,7 @@ export class AltaOrganizacionComponent implements OnInit {
   
 
   public cargarTipoOrganizacionEnum() {
-    this.http.get('http://localhost:8080/organizacion-tipo-enum')
+    this.http.get('http://52.142.62.129:8080/organizacion-tipo-enum')
       .pipe(map((res: any) => {
         res.forEach((item: any) => {
           this.tiposOrganizacion.push({ value: item, viewValue: item });
@@ -62,7 +62,7 @@ export class AltaOrganizacionComponent implements OnInit {
   }
 
   public clasificacionDeLaOrganizacionEnum() {
-    this.http.get('http://localhost:8080/organizacion-clasificacion-enum')
+    this.http.get('http://52.142.62.129:8080/organizacion-clasificacion-enum')
       .pipe(map((res: any) => {
         res.forEach((item: any) => {
           this.clasificacionesOrganizacion.push({ value: item, viewValue: item });
@@ -72,7 +72,7 @@ export class AltaOrganizacionComponent implements OnInit {
   }
 
   public agregarSectores() {
-    this.http.get('http://localhost:8080/sectores')
+    this.http.get('http://52.142.62.129:8080/sectores')
       .pipe(map((res: any) => {
         res.forEach((item: any) => {
           this.sectores.push({ value: item.id, viewValue: item.value });
@@ -94,7 +94,7 @@ export class AltaOrganizacionComponent implements OnInit {
     const body=JSON.stringify(organizacion);
     console.log(body)
 
-    this.http.post("http://localhost:8080/organizacion", body, { headers: httpHeaders }).pipe(
+    this.http.post("http://52.142.62.129:8080/organizacion", body, { headers: httpHeaders }).pipe(
       map(this.extractData),
       tap((apiResult) => {          
         this.router.navigate(["/home"]);

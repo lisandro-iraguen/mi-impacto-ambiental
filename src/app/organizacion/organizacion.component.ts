@@ -18,7 +18,7 @@ export class OrganizacionComponent implements OnInit {
   organizaciones: Organizacion[] = [ ];
   ngOnInit(): void {
 
-    this.http.get('http://localhost:8080/organizaciones')
+    this.http.get('http://52.142.62.129:8080/organizaciones')
       .pipe(map((res: any) => {
         res.forEach((item: any)=>{
           this.organizaciones.push({ value: item.id, viewValue: item.razonSocial })

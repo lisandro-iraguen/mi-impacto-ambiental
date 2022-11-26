@@ -27,7 +27,7 @@ export class AceptaRechazaTrabajadorComponent implements OnInit {
   constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8080/miembros')
+    this.http.get('http://52.142.62.129:8080/miembros')
       .pipe(map((res: any) => {     
         res.forEach((item: any)=>{
           console.log(this.table.dataSource)
@@ -71,7 +71,7 @@ export class AceptaRechazaTrabajadorComponent implements OnInit {
       dto.aceptados= this.trabajadoresAceptados
       dto.rechazados= this.trabajadoresRechazados
       const body=JSON.stringify(dto);
-      this.http.post("http://localhost:8080/miembros", body, { headers: httpHeaders }).pipe(
+      this.http.post("http://52.142.62.129:8080/miembros", body, { headers: httpHeaders }).pipe(
         map(this.extractData),
         tap((apiResult) => {          
           this.extractData(apiResult)

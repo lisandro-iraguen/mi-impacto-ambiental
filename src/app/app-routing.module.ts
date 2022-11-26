@@ -44,7 +44,7 @@ const routes: Routes = [
   {
     path: 'usuarie',
     component: AltaUsuarieComponent,
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'settings',
@@ -75,33 +75,33 @@ const routes: Routes = [
     path: 'trabajadores',
     component: AceptaRechazaTrabajadorComponent,
     // canActivate: [RoleGuard],
-    // data: { 
+    // data: {
     //    expectedRole: 'ADMIN'
-    // } 
+    // }
   },
   {
     path: 'settings',
     component: SettingsComponent,
     // canActivate: [RoleGuard],
-    // data: { 
+    // data: {
     //    expectedRole: 'ADMIN'
-    //  } 
+    //  }
   },
   {
     path: 'recomendaciones-vinculacion',
     component: RecomendacionesVinculacionComponent,
-    // canActivate: [RoleGuard], 
-    //  data: { 
+    // canActivate: [RoleGuard],
+    //  data: {
     //    expectedRole: 'ADMIN'
-    //  } 
+    //  }
   },
   {
     path: 'recomendaciones',
     component: RecomendacionesComponent,
-    // canActivate: [RoleGuard], 
-    // data: { 
+    // canActivate: [RoleGuard],
+    // data: {
     //   expectedRole: 'ADMIN'
-    // } 
+    // }
   },
   {
     path: 'tramo',
@@ -111,18 +111,18 @@ const routes: Routes = [
   {
     path: 'organizacion',
     component: AltaOrganizacionComponent,
-    // canActivate: [RoleGuard], 
-    // data: { 
+    // canActivate: [RoleGuard],
+    // data: {
     //   expectedRole: 'ADMIN'
-    // } 
+    // }
   },
   {
     path: 'sector',
     component: AltaSectorComponent,
-    // canActivate: [RoleGuard], 
-    // data: { 
+    // canActivate: [RoleGuard],
+    // data: {
     //   expectedRole: 'ADMIN'
-    // } 
+    // }
   },
   {
     path: 'aprobacion',
@@ -137,10 +137,10 @@ const routes: Routes = [
   {
     path: 'registrar-mediciones',
     component: RegistrarMedicionesComponent,
-    // canActivate: [RoleGuard], 
-    // data: { 
+    // canActivate: [RoleGuard],
+    // data: {
     //   expectedRole: 'ADMIN'
-    // } 
+    // }
   },
   {
     path: 'calculadora-hc',

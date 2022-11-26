@@ -56,7 +56,7 @@ export class ReportesComponent implements OnInit {
     
     if(this.valorReporteId=='imprimir-Composicion-HC'&& this.valorSectorId !=null) {
       console.log("peticion enviada");
-      this.http.get('http://localhost:8080/imprimir-Composicion-HC/'+ this.valorSectorId )
+      this.http.get('http://52.142.62.129:8080/imprimir-Composicion-HC/'+ this.valorSectorId )
       .pipe(map((res: any) => {     
         console.log(res);
         this.reporte=res;
@@ -67,7 +67,7 @@ export class ReportesComponent implements OnInit {
     
     if(this.valorReporteId=='imprimirComposicionHC'&& this.valorOrganizacionId !=null) {
       console.log("peticion enviada");
-      this.http.get('http://localhost:8080/imprimirComposicionHC/'+ this.valorOrganizacionId )
+      this.http.get('http://52.142.62.129:8080/imprimirComposicionHC/'+ this.valorOrganizacionId )
       .pipe(map((res: any) => {     
         console.log(res);
         this.reporte=res;
@@ -78,7 +78,7 @@ export class ReportesComponent implements OnInit {
     
     if(this.valorReporteId=='imprimirTodoLosSectoresDeLaBaseDeDatos') {
       console.log("peticion enviada");
-      this.http.get('http://localhost:8080/imprimirTodoLosSectores')
+      this.http.get('http://52.142.62.129:8080/imprimirTodoLosSectores')
       .pipe(map((res: any) => {     
         console.log(res);
         this.reporte=res;
@@ -89,7 +89,7 @@ export class ReportesComponent implements OnInit {
     
     if(this.valorReporteId=='imprimirEvolucionHCSector'&& this.valorSectorId !=null) {
       console.log("peticion enviada");
-      this.http.get('http://localhost:8080/imprimiverEvolucionSectorHC/'+ this.valorSectorId)
+      this.http.get('http://52.142.62.129:8080/imprimiverEvolucionSectorHC/'+ this.valorSectorId)
       .pipe(map((res: any) => {     
         console.log(res);
         this.reporte=res;
@@ -100,7 +100,7 @@ export class ReportesComponent implements OnInit {
     
     if(this.valorReporteId=='imprimirTodoLasOrganizacionesDeLaBaseDeDatosXPeriodicidadMensual') {
       console.log("peticion enviada");
-      this.http.get('http://localhost:8080/imprimirTodoLasOrganizacionesDeLaBaseDeDatosXPeriodicidadMensual')
+      this.http.get('http://52.142.62.129:8080/imprimirTodoLasOrganizacionesDeLaBaseDeDatosXPeriodicidadMensual')
       .pipe(map((res: any) => {     
         console.log(res);
         this.reporte=res;
@@ -112,7 +112,7 @@ export class ReportesComponent implements OnInit {
 
     if(this.valorReporteId=='imprimirTodoLasOrganizacionesDeLaBaseDeDatosXPeriodicidadAnual') {
       console.log("peticion enviada");
-      this.http.get('http://localhost:8080/imprimirTodoLasOrganizacionesDeLaBaseDeDatosXPeriodicidadAnual')
+      this.http.get('http://52.142.62.129:8080/imprimirTodoLasOrganizacionesDeLaBaseDeDatosXPeriodicidadAnual')
       .pipe(map((res: any) => {     
         console.log(res);
         this.reporte=res;

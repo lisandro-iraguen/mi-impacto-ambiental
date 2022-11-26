@@ -13,7 +13,7 @@ export class SectorComponent implements OnInit {
 
   sectores: Sector[] = [ ];
   ngOnInit(): void {
-    this.http.get('http://localhost:8080/sectores')
+    this.http.get('http://52.142.62.129:8080/sectores')
       .pipe(map((res: any) => {
         res.forEach((item: any)=>{
           this.sectores.push({ value: item.id, viewValue: item.tipoSector })
